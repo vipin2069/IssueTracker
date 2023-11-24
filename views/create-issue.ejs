@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Issue</title>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <div class="mainPage">
+      <div class="pageTitle">
+        <img src="/image/bug.png" alt="Bug image" />
+        <h1>Issue Tracker</h1>
+      </div>
+      <div class="projectSection box">
+        <h2>Create New Issue</h2>
+
+        <!-- Issue Creation Form -->
+        <form action="/<%= projectId %>/created" method="post">
+          <label for="title">Issue Title:</label>
+          <input type="text" name="title" required />
+
+          <label for="description">Issue Description:</label>
+          <textarea name="description" rows="4" required></textarea>
+
+          <label for="labels">Labels:</label>
+          <input
+            type="text"
+            name="labels"
+            id="labelInput"
+            placeholder="Add labels, separated by commas"
+          />
+          <datalist id="existingLabels">
+            <!-- Dynamically populate this datalist with existing labels for the project -->
+          </datalist>
+
+          <label for="author">Author:</label>
+          <input type="text" name="author" required />
+
+          <button class="secondaryBtn" type="submit">Create Issue</button>
+        </form>
+      </div>
+      <!-- Link to go back to the project detail page -->
+      <div class="createProject back">
+      <a class="primaryBtn" href="/<%= projectId %>">Back to Project</a>
+    </div>
+  </div>
+
+    <script>
+      // Fetch existing labels for the project and update the datalist
+      const projectId = "<%= projectId %>";
+      const labelInput = document.getElementById("labelInput");
+      const existingLabelsDatalist = document.getElementById("existingLabels");
+
+      // Function to fetch existing labels for the project
+      const fetchExistingLabels = async () => {
+        try {
+          const response = await fetch(`/api/projects/${projectId}/labels`);
+          const existingLabels = await response.json();
+
+          // Clear existing options
+          existingLabelsDatalist.innerHTML = "";
+
+          // Add fetched labels to the datalist
+          existingLabels.forEach((label) => {
+            const option = document.createElement("option");
+            option.value = label;
+            existingLabelsDatalist.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error fetching existing labels:", error);
+        }
+      };
+
+      // Attach an input event listener to the label input
+      labelInput.addEventListener("input", fetchExistingLabels);
+
+      // Initial fetch of existing labels
+      fetchExistingLabels();
+    </script>
+  </body>
+</html>

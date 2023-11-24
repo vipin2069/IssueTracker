@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Project</title>
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+  <div class="mainPage">
+    <div class="pageTitle">
+      <img src="/image/bug.png" alt="Bug image" />
+      <h1>Issue Tracker</h1>
+    </div>
+    <div class="projectSection box">
+      <h2>Create New Project</h2>
+      <!-- Project Creation Form -->
+      <form action="/project/create" method="post">
+        <label for="name">Project Name:</label>
+        <input type="text" name="name" required>
+        
+        <label for="description">Project Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+        
+        <label for="author">Author:</label>
+        <input type="text" name="author" required>
+        
+        <button class="secondaryBtn" type="submit">Create Project</button>
+      </form>
+    </div>
+    
+    <!-- Link to go back to the home page -->
+    <div class="createProject back">
+    <a class="primaryBtn" href="/">Back to Projects</a>
+  </div>
+  </div>
+</body>
+</html>

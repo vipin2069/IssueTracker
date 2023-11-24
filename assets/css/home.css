@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fefffe;
+}
+
+.mainPage {
+  height: 100%;
+  padding: 10px 40px;
+}
+.pageTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.pageTitle img {
+  width: 40px;
+}
+
+.box {
+  background-color: #f2f9f5;
+  padding: 20px 40px;
+  border-radius: 30px;
+}
+.projectsList {
+  height: calc(100% - 85px);
+  overflow: auto;
+}
+.createProject {
+  margin-top: 30px;
+  height: fit-content;
+  text-align: center;
+}
+.back{
+  display: flex;
+  justify-content: end;
+}
+.notAvailable {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text {
+  font-size: 40px;
+  color: darkgrey;
+}
+.projectSection {
+  height: calc(100vh - 235px);
+  overflow: hidden;
+}
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+.primaryBtn {
+  display: flex;
+  padding: 15px 30px;
+  width: fit-content;
+  background-color: #ff8800 !important;
+  color: #fff !important;
+  font-size: 1.2rem;
+  border-radius: 8px;
+}
+.secondaryBtn{
+  display: flex;
+  padding: 10px 20px;
+  width: fit-content;
+  background-color: #4d4d4d !important;
+  color: #fff !important;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+h1 {
+  color: grey;
+}
+
+/* Header */
+header {
+  background-color: #343a40;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Project List */
+.project {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Forms */
+form {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Buttons */
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Text Input */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 25px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Select Input */
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Project Detail */
+.issues {
+  margin-top: 20px;
+}
+
+.issue {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.filters {
+  background-color: #f8f9fa;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainPage {
+    height: 100%;
+    padding: 10px 20px;
+}
+.box {
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+  form,
+  .project,
+  .issue {
+    margin: 10px 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}

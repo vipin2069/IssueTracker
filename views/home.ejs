@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Issue Tracker</title>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <div class="mainPage">
+      <div class="pageTitle">
+        <img src="/image/bug.png" alt="Bug image" />
+        <h1>Issue Tracker</h1>
+      </div>
+      <div class="projectSection box">
+        <h2>Projects</h2>
+        <% if (projects && projects.length > 0) { %>
+        <div class="projectsList">
+          <% projects.forEach(project => { %>
+          <div class="project">
+            <div>
+              <h2><%= project.name %></h2>
+              <p>Author: <%= project.author %></p>  
+              <p>Description: <%= project.description %></p>
+            </div>
+            <a class="secondaryBtn" href="/<%= project._id %>">View Details</a>
+          </div>
+          <% }); %>
+        </div>
+        <% } else { %>
+        <div class="notAvailable">
+          <div class="text">No Projects here ..</div>
+        </div>
+        <% } %>
+      </div>
+      <div class="createProject">
+        <a class="primaryBtn" href="/create-project">Create New Project</a>
+      </div>
+    </div>
+  </body>
+</html>

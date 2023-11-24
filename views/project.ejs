@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project: <%= project.name %> - Issues</title>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <div class="mainPage">
+      <div class="pageTitle">
+        <img src="/image/bug.png" alt="Bug image" />
+        <h1>Issue Tracker</h1>
+      </div>
+      <div class="projectSection box">
+        <h2>Project: <%= project.name %> - Issues</h2>
+        <!-- Filters Section -->
+        <div class="projectsList">
+        <div class="filters">
+          <form id="filterForm" action="/<%= project._id %>" method="get">
+            <!-- Filter by multiple labels -->
+            <label for="labels">Filter by Labels:</label>
+            <select name="labels">
+              <option value="">Select Label</option>
+              <% if (issues && issues.length > 0) { %> <% issues.map((i) => { %>
+              <option value="<%= i.labels %>"><%= i.labels %></option>
+              <% }); %> <% } else { %>
+              <option value="">No Labels</option>
+              <% } %>
+            </select>
+
+            <!-- Filter by author -->
+            <label for="author">Filter by Author:</label>
+            <input type="text" name="author" placeholder="Author" />
+
+            <!-- Search by title and description -->
+            <label for="search">Search by Title/Description:</label>
+            <input type="text" name="search" placeholder="Search" />
+
+            <button class="secondaryBtn" type="submit" onclick="applyFilters()">
+              Apply Filters
+            </button>
+          </form>
+        </div>
+
+        <!-- Issues Section -->
+        <div class="issues">
+          <% issues.forEach(issue => { %>
+          <div class="issue">
+            <h2><%= issue.title %></h2>
+            <p>Description: <%= issue.description %></p>
+            <p>Author: <%= issue.author %></p>
+            <p>Labels: <%= issue.labels.join(', ') %></p>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+      <!-- Create Issue Button -->
+      <div class="createProject">
+      <a class="primaryBtn" href="/<%= project._id %>/create-issue">Create New Issue</a>
+    </div>
+  </div>
+    <script>
+      // Function to apply filters asynchronously
+      function applyFilters() {
+        const form = document.getElementById("filterForm");
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: formData,
+        })
+          .then((response) => response.text())
+          .then((html) => {
+            const parser = new DOMParser();
+            const newDoc = parser.parseFromString(html, "text/html");
+            const newIssuesList = newDoc.getElementById("issuesList");
+
+            // Update the issues list with the filtered results
+            const currentIssuesList = document.getElementById("issuesList");
+            currentIssuesList.innerHTML = newIssuesList.innerHTML;
+          })
+          .catch((error) => console.error("Error applying filters:", error));
+      }
+    </script>
+  </body>
+</html>
