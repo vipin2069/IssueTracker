@@ -16,7 +16,7 @@ Ensure you have Node.js and npm installed on your machine.
 
 ## Installation
 ```bash
-Clone the repository:
+# Clone the repository:
 git clone https://github.com/your-username/issue-tracker.git
 
 # Navigate to the project directory
